@@ -1,13 +1,16 @@
-<template>
-  <div id="app">
+<template lang='html'>
+  <div class="main-container">
+    <h1> Films List </h1>
+    <films-filter-form :films="films" />
     <films-list :films="films"> </films-list>
-    <p> APP.vue test </p>
     
   </div>
 </template>
 
 <script>
+import { eventBus } from './main.js'
 import FilmsList from './components/FilmsList.vue'
+import FilmsFilterForm from './components/FilmsFilterForm.vue'
 
 export default {
   name: 'App',
@@ -26,19 +29,21 @@ export default {
   },
   
   components: {
-    'films-list': FilmsList
+    'films-list': FilmsList,
+    'films-filter-form' : FilmsFilterForm
     
   }
 }
 </script>
 
-<style>
-#app {
+<style lang="css" scoped>
+.main-container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  justify-content: left;
 }
 </style>

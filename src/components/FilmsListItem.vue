@@ -1,6 +1,8 @@
 <template>
-    <li> {{film.title}}
-    </li>
+    <div>
+    <ul>Title: {{film.title}} Year: {{film.release_date}} Reviews: {{film.rt_score}}
+    </ul>
+    </div>
 </template>
 
 <script>
