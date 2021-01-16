@@ -1,26 +1,32 @@
 <template>
   <div id="app">
+    <films-list :films="films"> </films-list>
     <p> APP.vue test </p>
+    
   </div>
 </template>
 
 <script>
-
+import FilmsList from './components/FilmsList.vue'
 
 export default {
   name: 'App',
   data (){
     return {
-      beers: [],
+      films: [],
 
     }
   },
   mounted(){
     fetch('https://ghibliapi.herokuapp.com/films')
     .then(res => res.json())
-    .then(beers => this.beers = beers);
+    .then(films => this.films = films)
+
+
   },
+  
   components: {
+    'films-list': FilmsList
     
   }
 }
