@@ -1,8 +1,9 @@
 <template lang='html'>
   <div class="main-container">
     <h1> Films List </h1>
-    <films-filter-form :films="films" />
-    <films-list :films="films"> </films-list>
+    <films-filter-form :films="films" /> </films-filter-form>
+    <!-- <films-list :films="films"> </films-list> -->
+    <films-detail :films="films"> </films-detail>
     
   </div>
 </template>
@@ -11,12 +12,14 @@
 import { eventBus } from './main.js'
 import FilmsList from './components/FilmsList.vue'
 import FilmsFilterForm from './components/FilmsFilterForm.vue'
+import FilmsDetail from './components/FilmsDetail.vue'
 
 export default {
   name: 'App',
   data (){
     return {
       films: [],
+
 
     }
   },
@@ -30,7 +33,8 @@ export default {
   
   components: {
     'films-list': FilmsList,
-    'films-filter-form' : FilmsFilterForm
+    'films-filter-form' : FilmsFilterForm,
+    'films-detail' : FilmsDetail
     
   }
 }

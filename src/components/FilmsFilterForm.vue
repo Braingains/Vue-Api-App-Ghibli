@@ -3,7 +3,7 @@
     <input type="text" v-model="search" placeholder="search for movie" v-on:keyup="searchForFilm">
     <select v-on:change="handleSelect" v-model="selectedFilm">
       <option disabled value="">Select a Movie..</option>
-      <option v-for="film in films" :value="film">{{film.title}}</option>
+      <option v-for="(film, index) in films" :value="film" :key="index">{{film.title}}</option>
     </select>
   </form>
 </template>
