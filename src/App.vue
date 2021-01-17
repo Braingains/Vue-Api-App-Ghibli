@@ -4,6 +4,7 @@
     <films-filter-form :films="films" /> </films-filter-form>
     <!-- <films-list :films="films"> </films-list> -->
     <films-detail :films="films"> </films-detail>
+    <favourite-films :favouriteFilms='favourites'> </favourite-films>
     
   </div>
 </template>
@@ -13,12 +14,16 @@ import { eventBus } from './main.js'
 import FilmsList from './components/FilmsList.vue'
 import FilmsFilterForm from './components/FilmsFilterForm.vue'
 import FilmsDetail from './components/FilmsDetail.vue'
+import FavouriteFilms from './components/FavouriteFilms.vue'
 
 export default {
   name: 'App',
   data (){
     return {
       films: [],
+      favourites:[],
+      selectedFilm: null,
+      filmToSave: null
 
 
     }
@@ -27,6 +32,17 @@ export default {
     fetch('https://ghibliapi.herokuapp.com/films')
     .then(res => res.json())
     .then(films => this.films = films)
+    
+
+    eventBus.$on('film-selected', (film) => {
+      this.selectedFilm = film
+    })
+
+    eventBus.$on('film-to-save', (film) => {
+      if(!this.favourites.include(film)){
+        this.favourites.push(film)
+      }
+    })
 
 
   },
@@ -34,7 +50,8 @@ export default {
   components: {
     'films-list': FilmsList,
     'films-filter-form' : FilmsFilterForm,
-    'films-detail' : FilmsDetail
+    'films-detail' : FilmsDetail,
+    'favourite-films': FavouriteFilms
     
   }
 }
